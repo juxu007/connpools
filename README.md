@@ -1,4 +1,4 @@
-# thrift_connection_pools
+# thrift connection pools
 management of multiple thrift connection pools
 
 1. use zookeeper as registration authority; 
