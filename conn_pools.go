@@ -415,7 +415,7 @@ func RemoteCallInParallel(ctx context.Context, serviceName string, clientCallbac
 
 	var cancel context.CancelFunc
 	if ctx != nil {
-		if ctx.Value(requestID) != nil {
+		if ctx.Value(RequestID) != nil {
 			requestID = fmt.Sprint(ctx.Value(requestID))
 		} else {
 			id := atomic.AddInt64(&reqId, 1)
