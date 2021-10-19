@@ -556,19 +556,22 @@ func call(ctx context.Context, clientCallback, funcCallback interface{}, client 
 		fArgs[i+2] = reflect.ValueOf(arg)
 	}
 
-	respChan := make(chan []reflect.Value, 1)
-	go func() {
-		defer func() {
-			if err := recover(); err != nil {
-				PrintStack(err)
-			}
-		}()
-		respChan <- fFunc.Call(fArgs)
-	}()
-	select {
-	case resp := <-respChan:
-		return resp
-	case <-ctx.Done():
-		return nil
-	}
+// 	be carefull of closing socket if socket is in use
+// 	respChan := make(chan []reflect.Value, 1)
+// 	go func() {
+// 		defer func() {
+// 			if err := recover(); err != nil {
+// 				PrintStack(err)
+// 			}
+// 		}()
+// 		respChan <- fFunc.Call(fArgs)
+// 	}()
+// 	select {
+// 	case resp := <-respChan:
+// 		return resp
+// 	case <-ctx.Done():
+// 		return nil
+// 	}
+	
+	return <- fFunc.Call(fArgs)
 }
