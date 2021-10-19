@@ -573,5 +573,5 @@ func call(ctx context.Context, clientCallback, funcCallback interface{}, client 
 // 		return nil
 // 	}
 	
-	return <- fFunc.Call(fArgs)
+	return fFunc.Call(fArgs)
 }
